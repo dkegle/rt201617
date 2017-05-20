@@ -1,0 +1,23 @@
+Physicists suggest new way to detect dark matter
+November 18, 2014
+ Physicists suggest new way to detect dark matter
+Associate professor Chris Kouvaris from the University of Southern Denmark. Credit: University of Southern Denmark
+For years physicists have been looking for the universe's elusive dark matter, but so far no one has seen any trace of it. Maybe we are looking in the wrong place? Now physicists from University of Southern Denmark propose a new technique to detect dark matter.
+
+The universe consists of atoms and particles - and a whole lot more that still needs to be detected. We can only speculate about the existence of this unknown matter and energy.
+"We know that app. 5 pct. of the universe consists of the known matter we are all made of. The rest is unknown. This unknown matter is called dark matter, and we believe that it is all around us, including here on Earth", explains Chris Kouvaris, associate professor at the Centre for Cosmology and Particle Physics Phenomenology (CP3-Origins), Department of Physics, Chemistry and Pharmacy, University of Southern Denmark.
+He and his colleague from CP3-Origins, postdoc Ian Shoemaker, now suggest a new way to detect the existence of the elusive dark matter.
+Cosmic noise is a problem
+Over the last years, physicists have placed detectors in underground sites app. a kilometer or more deep in order to detect dark matter. The idea is that dark matter is easier to detect in deep sites because there is less noise from cosmic or Earth-produced radiation that can potentially cover the dark matter signal. This approach of detecting dark matter makes sense provided that dark matter interacts only a bit with atoms as it goes underground. The scientific term for this is that dark matter is weakly interacting with its surroundings.
+"But we don't know if dark matter is that weakly interacting. In principle dark matter particles can lose energy as they travel underground before they hit the detector due to interactions with regular atoms. And in that case they might not have enough energy left to trigger the detector once they arrive there", says Chris Kouvaris.
+Signals are good 12 hours a day
+In a new research paper, he and Shoemaker study the possibility that dark matter can indeed interact substantially with atoms. They claim that depending on the properties of the dark matter particles, deep placed detectors can be blind because particles might have lost most of their energy before reaching the detector.
+"In such a case, it would make more sense to look for dark matter signals on the surface of the Earth or in shallow sites", Kouvaris argues.
+Placing a detector in shallow sites or on the surface ensures small energy loss for the dark matter particles but it also means a big increase in the background noise. This was after all the reason why detectors were placed in deep sites in the first place. To overcome this problem Kouvaris and Shoemaker propose - instead of trying to detect a single collision of a dark matter particle with the detector - to look for a signal that varies periodically during the day.
+Because dark matter particles approach the detector from various directions, as the Earth rotates, the flux of the particles reaching the detector can vary. This causes a signal that will go from maximum to minimum in 12 hours and back to maximum again after another 12 hours.
+Such a pattern will make the signals from dark matter stand out clear even though the detectors also pick up cosmic noise.
+"The best locations for the observation of such a modulation signal are places in the south hemisphere with latitude around 40 degrees, such as Argentina, Chile and New Zealand" says Chris Kouvaris.
+What is dark matter and dark energy?
+27 pct. of the universe is believed to consist of dark matter. Dark matter is believed to be the "glue" that holds galaxies together. Nobody knows what dark matter really is.
+5 pct. of the universe consists of known matter such as atoms and subatomic particles.
+The rest of the universe is believed to consist of dark energy. Dark energy is believed to make the universe expand.

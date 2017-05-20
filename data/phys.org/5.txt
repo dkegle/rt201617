@@ -1,0 +1,33 @@
+New theory—If we want to detect dark matter we might need a different approach
+August 20, 2015
+New theory: If we want to detect dark matter we might need a different approach
+The Large Underground Xenon (LUX) experiment is placed in this former mine almost 1500 m underground in South Dakota, USA. Credit: Matt Kapust, Sanford Underground Research Facility.
+Physicists suggest a new way to look for dark matter: They believe that dark matter particles annihilate into so-called dark radiation when they collide. If true, then we should be able to detect the signals from this radiation.
+The majority of the mass in the universe remains unknown. Despite knowing very little about dark matter, its overall abundance is precisely measured. In other words: Physicists know it is out there, but they have not yet detected it.
+It is definitely worth looking for, argues Ian Shoemaker, former postdoctoral researcher at Centre for Cosmology and Particle Physics Phenomenology (CP3), Department of Physics, Chemistry and Pharmacy, University of Southern Denmark, now at Penn State, USA.
+"There is no way of predicting what we can do with dark matter, if we detect it. But it might revolutionize our world. When scientists discovered quantum mechanics, it was considered a curiosity. Today, quantum mechanics plays an important role in computers," he says.
+Ever since dark matter was first theorized, there have been many attempts to look for it, and now Ian Shoemaker and fellow scientists, Associate Professor Mads Toudal Frandsen, CP3, and John F. Cherry, postdoctoral researcher from Los Alamos National Laboratory, USA, suggest a new approach. They present their work in the journal Physical Review Letters.
+Look in underground caves
+On Earth, several detectors are located in underground cavities, where disturbing noise is minimized. The hope is that one of these detectors will one day catch a dark matter particle passing through Earth.
+According to Ian Shoemaker, it is possible that this might happen, but given how little we know about dark matter, we should keep an open mind and explore all paths that could lead to its detection.
+New theory: If we want to detect dark matter we might need a different approach
+The LUX detector. Credit: Matt Kapust, Sanford Underground Research Facility.
+One reason for this is that dark matter is not very dense in our part of the universe.
+"If we add another way of looking for dark matter, then we will increase our chances of detecting dark matter in our underground cavities", says Shoemaker.
+He and his colleagues now suggest looking for the signs of dark matter activity rather than the dark matter particles themselves.
+
+ 
+The researchers believe that when two dark matter particles meet, they will behave just like ordinary particles; that they will annihilate and create radiation in the process. In this case, the radiation is called dark radiation, and it may be detected by the existing underground detectors.
+"Underground detection experiments may be able to detect the signals created by dark radiation", Shoemaker says.
+The researchers have found that the Large Underground Xenon (LUX) experiment is, in fact, already sensitive to this signal and can, with future data, confirm or exclude their hypothesis for dark matter's origin.
+Don't forget to look in the Milky Way, too
+The attempt to catch signals from dark radiation is not a new idea—it is currently being performed in several regions in space via satellite-based experiments. These places include the center of our galaxy, the Milky Way, and the sun is another possible location.
+"It makes sense to look for dark radiation in certain places in space, where we expect it to be very dense—a lot denser than on Earth", explains Shoemaker, adding, "If there is an abundance of dark matter in these areas, then we would expect it to annihilate and create radiation."
+None of the satellite-based experiments however have yet detected dark radiation. According to Shoemaker, Frandsen and Cherry, this could be because the experiments look for the wrong signals.
+"The traditional satellite-based experiments search for photons, because they expect dark matter to annihilate into photons. But if dark matter annihilates into dark radiation, then these satellite-based experiments are hopeless."
+In the early days of the universe, when all matter was still extremely dense, dark matter may have collided and annihilated into radiation all the time. This happened to ordinary matter as well, so it is not unlikely that dark matter behaves the same way, the researchers argue.
+How to find dark matter
+Physicists have three ways to try and detect dark matter:
+Make it: Slam matter together and produce dark matter. This has been tried at high-energy particle colliders, the most famous of which is CERN's Large Hadron Collider (LHC) in Geneva, Switzerland. So far, no success.
+Break it: This is the "annihilation" process in which two dark matter particles meet and produce some sort of radiation. This can happen whenever dark matter is dense enough so that the probability of two dark matter particles colliding is sufficiently high. So far no success.
+Wait for it: Set up detectors and wait for them to catch dark matter particles or signs of them. So far no success.
