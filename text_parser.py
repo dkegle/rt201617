@@ -1,14 +1,23 @@
-from math import log
+from math import log, sqrt
 from collections import Counter
 import re
 
 class Text:
+	text_file = ""
 	avgWordRatio = 0.0 # average word length / longest word length
 	avgSentenceRatio = 0.0 # average sentence length / longest sentence length
 	tfidfRatio = 0.0 # num of three top idf words / num of all words
 	atMostEightRatio = 0.0 # num of words with at most eight chars / num of all words
 	atLeastNineRatio = 0.0 # num of words with at least nine chars / num of all words
-	diversityRatio = 0.0 # sqrt(num of different words / num of all words)
+	diversityRatio = 0.0 # num of different words / num of all words
+
+	def asVector(self):
+		return (self.avgWordRatio,
+				self.avgSentenceRatio,
+				self.tfidfRatio,
+				self.atMostEightRatio,
+				self.atLeastNineRatio,
+				self.diversityRatio)
 
 class TextParser:
 	texts = []
@@ -88,7 +97,7 @@ class TextParser:
 				new_text.atMostEightRatio = at_most_eight / num_of_words
 				new_text.atLeastNineRatio = at_least_nine / num_of_words
 
-				new_text.diversityRatio = sqrt(len(set(words_in_text)) / num_of_words)
+				new_text.diversityRatio = len(set(words_in_text)) / num_of_words
 
 				c = dict(Counter(words_in_text))
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
@@ -114,4 +123,6 @@ class TextParser:
 			highest_tfidf = sorted(tfidf, key=tfidf.get(1))[-3:]
 			text.tfidfRatio = sum([word_frequencies[text][w] for w in highest_tfidf])
 
-			
+	
+	def getResults(self):
+		return self.texts
