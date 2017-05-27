@@ -99,13 +99,17 @@ class TextParser:
 
 				new_text.diversityRatio = len(set(words_in_text)) / num_of_words
 
+				new_text.text_file = text
+
 				c = dict(Counter(words_in_text))
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
 					for word in words_in_text}
 				
 				self.texts.append(new_text)
-			except:
-				print("Failed to open " + text + ", skipping")
+			except Exception as e:
+				print("Failed to load " + text)
+				print(str(e))
+				print("Skipping to next file")
 
 		# calculate tf-idf
 		word_idf = {}
