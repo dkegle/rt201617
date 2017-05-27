@@ -1,5 +1,5 @@
 from math import log
-from collections import Counter, defaultdict
+from collections import Counter
 import re
 
 class Text:
@@ -8,6 +8,7 @@ class Text:
 	tfidfRatio = 0.0 # num of three top idf words / num of all words
 	atMostEightRatio = 0.0 # num of words with at most eight chars / num of all words
 	atLeastNineRatio = 0.0 # num of words with at least nine chars / num of all words
+	diversityRatio = 0.0 # sqrt(num of different words / num of all words)
 
 class TextParser:
 	texts = []
@@ -87,6 +88,8 @@ class TextParser:
 				new_text.atMostEightRatio = at_most_eight / num_of_words
 				new_text.atLeastNineRatio = at_least_nine / num_of_words
 
+				new_text.diversityRatio = sqrt(len(set(words_in_text)) / num_of_words)
+
 				c = dict(Counter(words_in_text))
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
 					for word in words_in_text}
@@ -107,7 +110,7 @@ class TextParser:
 							num_appearances += 1
 					word_idf[word] = log(len(self.texts) / float(num_appearances))
 				tfidf[word] = word_frequencies[text][word] * word_idf[word]
-				
+
 			highest_tfidf = sorted(tfidf, key=tfidf.get(1))[-3:]
 			text.tfidfRatio = sum([word_frequencies[text][w] for w in highest_tfidf])
 
