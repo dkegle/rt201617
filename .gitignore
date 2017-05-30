@@ -1,5 +1,8 @@
 xdata/
 __pycache__/
+#*
+.#*
+*.pyc
 presentation/presentation.aux
 presentation/presentation.log
 presentation/presentation.nav
