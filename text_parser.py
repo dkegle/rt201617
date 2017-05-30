@@ -24,10 +24,12 @@ class TextParser:
 	text_paths = []
 	line_stop = ""
 	word_split = ""
+	stop_words = []
 
-	def __init__(self, text_paths, line_stop=".!?", word_split=" ,"):
-		""" text_paths is a list of strings, which stores paths to files 
-		that will be parsed. 
+	def __init__(self, text_paths, line_stop=".!?", word_split=" ,",
+		     stop_words = False, stop_word_file = "data/stop-words.txt"):
+		""" text_paths is a list of strings, which stores paths to files
+		that will be parsed.
 		line_stop and word_split are delimiters for sentences and words.
 
 		examples:
@@ -43,6 +45,14 @@ class TextParser:
 		self.text_paths = text_paths
 		self.line_stop = line_stop
 		self.word_split = word_split
+
+		if stop_words:
+			f = open(stop_word_file)
+			self.stop_words = f.read().split("\n")
+			f.close()
+		else:
+			self.stop_words = []
+
 
 	def run(self):
 		word_frequencies = {} # needed for tf-idf
@@ -68,7 +78,7 @@ class TextParser:
 				for sentence in sentences:
 					# split sentence into words
 					sentence_words = re.split("[" + self.word_split + "]", sentence)
-					sentence_words = [w for w in sentence_words if len(w) > 0]
+					sentence_words = [w for w in sentence_words if len(w) > 0 and not w in self.stop_words]
 
 					# update parameters
 					words_in_text += sentence_words
@@ -104,7 +114,7 @@ class TextParser:
 				c = dict(Counter(words_in_text))
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
 					for word in words_in_text}
-				
+
 				self.texts.append(new_text)
 			except Exception as e:
 				print("Failed to load " + text)
@@ -127,6 +137,6 @@ class TextParser:
 			highest_tfidf = sorted(tfidf, key=tfidf.get(1))[-3:]
 			text.tfidfRatio = sum([word_frequencies[text][w] for w in highest_tfidf])
 
-	
+
 	def getResults(self):
 		return self.texts
