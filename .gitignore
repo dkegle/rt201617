@@ -1,2 +1,9 @@
 xdata/
 __pycache__/
+presentation/presentation.aux
+presentation/presentation.log
+presentation/presentation.nav
+presentation/presentation.out
+presentation/presentation.pdf
+presentation/presentation.snm
+presentation/presentation.toc
