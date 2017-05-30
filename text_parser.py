@@ -23,11 +23,11 @@ class Text:
 		return "Text(" + self.text_file + ")"
 
 class TextParser:
-	texts = []
-	text_paths = []
-	line_stop = ""
-	word_split = ""
-	stop_words = []
+	#texts
+	#text_paths
+	#line_stop = ""
+	#word_split = ""
+	#stop_words
 
 	def __init__(self, text_paths, line_stop=".!?", word_split=" ,",
 		     stop_words = False, stop_word_file = "data/stop-words.txt"):
@@ -45,6 +45,7 @@ class TextParser:
 			if not isinstance(text, str):
 				raise "Invalid init parameters"
 
+		self.texts = []
 		self.text_paths = text_paths
 		self.line_stop = line_stop
 		self.word_split = word_split
