@@ -1,29 +1,30 @@
 from text_parser import TextParser
-
-text_paths = [
-#	"data/phys.org/1.txt",
-	"data/phys.org/2.txt",
-#	"data/phys.org/3.txt",
-#	"data/phys.org/4.txt",
-#	"data/phys.org/5.txt",
-#	"data/phys.org/6.txt",
-#	"data/phys.org/7.txt",
-#	"data/phys.org/8.txt",
-#	"data/phys.org/9.txt",
-#	"data/phys.org/10.txt",
-#	"data/bible-newtest.txt",
-#	"data/bible-oldtest.txt"
-]
+from os import listdir
+from os import path
 
 line_stop = ".!?"
 word_split = " ,"
 
-if __name__ == "__main__":
+def read_data(dirpath, line_stop=".!?", word_split=" ,",
+	      stop_words = False, stop_word_file = "data/stop-words.txt"):
 
-	texts = []
-	tp = TextParser(text_paths, line_stop, word_split)
-	tp.run()
-	texts = tp.getResults()
-	for text in texts:
-		print("Text: " + text.text_file)
-		print("Value: " + str(text.asVector()) + "\n")
+	""" Parse all *.txt files in subdirectories of dirpath and return a list
+	of features.
+	"""
+	res = []
+	subdirs = [path.join(dirpath, d) for d in listdir(dirpath)
+		   if path.isdir(path.join(dirpath, d))]
+	for d in subdirs:
+		print("reading %s..." % d)
+		txt_files = [path.join(d, p) for p in listdir(d) if p.endswith(".txt")]
+		print(txt_files)
+		tp = TextParser(txt_files, line_stop, word_split, stop_words, stop_word_file)
+		tp.run()
+		res.append(list(tp.getResults()))
+
+	return res
+
+
+if __name__ == "__main__":
+	texts = read_data("data")
+	print(texts)

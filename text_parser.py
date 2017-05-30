@@ -19,6 +19,9 @@ class Text:
 				self.atLeastNineRatio,
 				self.diversityRatio)
 
+	def __repr__(self):
+		return "Text(" + self.text_file + ")"
+
 class TextParser:
 	texts = []
 	text_paths = []
