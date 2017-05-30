@@ -1,6 +1,7 @@
 from text_parser import TextParser
 from os import listdir
 from os import path
+import time
 
 line_stop = ".!?"
 word_split = " ,"
@@ -17,7 +18,6 @@ def read_data(dirpath, line_stop=".!?", word_split=" ,",
 	for d in subdirs:
 		print("reading %s..." % d)
 		txt_files = [path.join(d, p) for p in listdir(d) if p.endswith(".txt")]
-		print(txt_files)
 		tp = TextParser(txt_files, line_stop, word_split, stop_words, stop_word_file)
 		tp.run()
 		res.append(list(tp.getResults()))
