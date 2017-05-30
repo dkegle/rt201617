@@ -117,13 +117,12 @@ class TextParser:
 				c = dict(Counter(words_in_text))
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
 					for word in words_in_text}
-
 				self.texts.append(new_text)
 			except Exception as e:
 				print("Failed to load " + text)
 				print(str(e))
 				print("Skipping to next file")
-
+		
 		# calculate tf-idf
 		word_idf = {}
 		for text in self.texts:
