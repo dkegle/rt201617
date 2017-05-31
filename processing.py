@@ -35,7 +35,10 @@ class TextComplex:
 		if not isinstance(other, TextComplex):
 			raise "Invalid paramter!"
 
-		return gd.bottleneck_distance(self.diag, other.diag, e)
+		selfdiag = [x[1] for x in self.diag]
+		otherdiag = [x[1] for x in other.diag]
+
+		return gd.bottleneck_distance(selfdiag, otherdiag, e)
 
 	def betti_numbers(self):
 		""" Return the betti numbers of TextComplex.
