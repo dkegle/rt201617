@@ -8,7 +8,7 @@ class TextComplex:
 		self.pts = pts
 		self.name = name
 		self.alpha = gd.AlphaComplex(points = pts)
-		self.max_alpha_square = 0.5
+		self.max_alpha_square = max_alpha_square
 
 		print("Building %s..." % name)
 		self.sxtree = self.alpha.create_simplex_tree(max_alpha_square = self.max_alpha_square)
@@ -19,24 +19,26 @@ class TextComplex:
 	def __repr__(self):
 		return "TextComplex(" + self.name + ")"
 
-	def plot_persistence_diagram(self):
+	def plot_persistence_diagram(self, dim=0):
 		""" Plot persistence diagram.
 		"""
-		gd.plot_persistence_diagram(self.diag)
+		selfdiag = [x for x in self.diag if x[0] == dim]
+		gd.plot_persistence_diagram(selfdiag)
 
-	def plot_persistence_barcode(self):
+	def plot_persistence_barcode(self, dim=0):
 		""" Plot barcode diagram.
 		"""
-		gd.plot_persistence_barcode(self.diag)
+		selfdiag = [x for x in self.diag if x[0] == dim]
+		gd.plot_persistence_barcode(selfdiag)
 
-	def bottleneck_distance_to(self, other, e=0):
+	def bottleneck_distance_to(self, other, dim=0, e=0):
 		""" Compute the bottleneck distance to antoher TextComplex.
 		"""
 		if not isinstance(other, TextComplex):
 			raise "Invalid paramter!"
 
-		selfdiag = [x[1] for x in self.diag]
-		otherdiag = [x[1] for x in other.diag]
+		selfdiag = [x[1] for x in self.diag if x[0] == dim]
+		otherdiag = [x[1] for x in other.diag if x[0] == dim]
 
 		return gd.bottleneck_distance(selfdiag, otherdiag, e)
 
