@@ -12,9 +12,9 @@ class TextComplex:
 
 		print("Building %s..." % name)
 		self.sxtree = self.alpha.create_simplex_tree(max_alpha_square = self.max_alpha_square)
-		print("Number of sx's: %d" % sxtree.num_simplices())
+		print("Number of sx's: %d" % self.sxtree.num_simplices())
 
-		self.diag = sxtree.persistence()
+		self.diag = self.sxtree.persistence()
 
 	def __repr__(self):
 		return "TextComplex(" + self.name + ")"

@@ -20,7 +20,7 @@ def read_data(dirpath, line_stop=".!?", word_split=" ,",
 		txt_files = [path.join(d, p) for p in listdir(d) if p.endswith(".txt")]
 		tp = TextParser(txt_files, line_stop, word_split, stop_words, stop_word_file)
 		tp.run()
-		res.append(list(tp.getResults()))
+		res.append([txt.asVector() for txt in tp.getResults()])
 
 	return res
 
