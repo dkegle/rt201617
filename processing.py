@@ -22,13 +22,19 @@ class TextComplex:
 	def plot_persistence_diagram(self, dim=0):
 		""" Plot persistence diagram.
 		"""
-		selfdiag = [x for x in self.diag if x[0] == dim]
+		if dim >= 0:
+			selfdiag = [x for x in self.diag if x[0] == dim]
+		else:
+			selfdiag = self.diag
 		gd.plot_persistence_diagram(selfdiag)
 
 	def plot_persistence_barcode(self, dim=0):
 		""" Plot barcode diagram.
 		"""
-		selfdiag = [x for x in self.diag if x[0] == dim]
+		if dim >= 0:
+			selfdiag = [x for x in self.diag if x[0] == dim]
+		else:
+			selfdiag = self.diag
 		gd.plot_persistence_barcode(selfdiag)
 
 	def bottleneck_distance_to(self, other, dim=0, e=0):
