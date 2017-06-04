@@ -1,4 +1,5 @@
-from text_parser import TextParser, distance
+from text_parser import TextParser
+from metrics import get_distance_matrix, hellinger_dist, chisq_dist, euclidean_dist
 from processing import TextComplex, AbstractTextComplex
 from os import listdir
 from os import path
@@ -9,17 +10,17 @@ from matplotlib import pyplot as plt
 line_stop = ".!?"
 word_split = " ,"
 
-def read_data(dirpath, abstract_text_complex = False, line_stop=".!?", word_split=" ,",
+def read_data(dirpath, metric = None, line_stop=".!?", word_split=" ,",
 	      stop_words = False, stop_word_file = "data/stop-words.txt"):
 
 	""" Parse all *.txt files in subdirectories of dirpath and return a list
 	of features.
 	"""
 	text_sets, names = [], []
-	
+
 	subdirs = [path.join(dirpath, d) for d in listdir(dirpath)
 		   if path.isdir(path.join(dirpath, d))]
-	
+
 	for d in subdirs:
 		print("reading %s..." % d)
 		txt_files = [path.join(d, p) for p in listdir(d) if p.endswith(".txt")]
@@ -29,27 +30,26 @@ def read_data(dirpath, abstract_text_complex = False, line_stop=".!?", word_spli
 		names.append(d)
 
 	res = []
-	if abstract_text_complex:
+	if metric:
 		# distance matrices (for each complex)
 		res = []
 		for text_set in text_sets:
-			res.append(np.zeros((len(text_set), len(text_set))))
-			for i, text_1 in enumerate(text_set):
-				for j, text_2 in enumerate(text_set):
-					dist = distance(text_1, text_2)
-					res[-1][i, j] = dist
+			global ts
+			ts = text_set
+			res.append(get_distance_matrix(text_set, metric))
 	else:
 		res = [[txt.asVector() for txt in text_set] for text_set in text_sets]
 
 	return res, names
 
-def read_cxs(dirpath, abstract_text_complex = False, *args):
+def read_cxs(dirpath, metric = None, *args):
 	""" Read a list of TextComplex from directory.
 	"""
-	texts, names = read_data(dirpath, abstract_text_complex, *args)
-	if abstract_text_complex:
+	if metric:
+		texts, names = read_data(dirpath, metric, *args)
 		return [AbstractTextComplex(m, n) for m,n in zip(texts, names)]
 	else:
+		texts, names = read_data(dirpath, None, *args)
 		return [TextComplex(t, n) for t,n in zip(texts, names)]
 
 def distance_matrix(cxs):
@@ -74,6 +74,7 @@ def plot_diagrams(cxs, dim=0):
 
 
 if __name__ == "__main__":
-	cxs = read_cxs("data", True)
+	cxs = read_cxs("data", None)
+	cxs_hell = read_cxs("data", hellinger_dist)
 	mat = distance_matrix(cxs)
 	print(mat)

@@ -2,11 +2,6 @@ from math import log, sqrt
 from collections import Counter, defaultdict
 import re
 
-def distance(text_1, text_2):
-	""" Current: euclidean distance
-	TODO: include histograms into distance calculation """
-	return sqrt(sum([(x1-x2)**2 for x1,x2 in zip(text_1.asVector(), text_2.asVector())]))
-
 class Text:
 	text_file = ""
 	avgWordRatio = 0.0 # average word length / longest word length
