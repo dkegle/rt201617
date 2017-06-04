@@ -74,7 +74,19 @@ def plot_diagrams(cxs, dim=0):
 
 
 if __name__ == "__main__":
-	cxs = read_cxs("data", None)
+	cxs_alpha = read_cxs("data", None)
 	cxs_hell = read_cxs("data", hellinger_dist)
-	mat = distance_matrix(cxs)
-	print(mat)
+	cxs_chi = read_cxs("data", chisq_dist)
+	cxs_euc = read_cxs("data", euclidean_dist)
+	mat_alpha = distance_matrix(cxs_alpha)
+	mat_hell = distance_matrix(cxs_hell)
+	mat_chi = distance_matrix(cxs_chi)
+	mat_euc = distance_matrix(cxs_euc)
+	print("ALPHA:")
+	print(mat_alpha)
+	print("VIETORIS HELLINGER:")
+	print(mat_hell)
+	print("VIETORIS CHI SQUARED:")
+	print(mat_chi)
+	print("VIETORIS EUCLIDEAN:")
+	print(mat_euc)

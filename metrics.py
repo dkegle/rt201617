@@ -27,7 +27,7 @@ def chisq_dist(text1, text2):
 	n1 = max(h1.keys())
 	n2 = max(h2.keys())
 
-	return 1/2 * sum((h1[i] - h2[i])^2 / (h1[i] + h2[i] + 1e-10) for i in range(max(n1,n2)))
+	return 1/2 * sum((h1[i] - h2[i])**2 / (h1[i] + h2[i] + 1e-10) for i in range(max(n1,n2)))
 
 def euclidean_dist(text_1, text_2):
 	return sqrt(sum([(x1-x2)**2 for x1,x2 in zip(text_1.asVector(), text_2.asVector())]))
