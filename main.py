@@ -34,7 +34,7 @@ def distance_matrix(dirpath, *args):
 	mat = np.zeros((len(texts), len(texts)))
 
 	for i in range(len(texts)):
-		cxs.append(TextComplex(texts[i], names[i]))
+		cxs.append(TextComplex(texts[i], names[i], 0.5))
 
 	for i in range(len(texts)):
 		for j in range(len(texts)):
@@ -47,5 +47,6 @@ def distance_matrix(dirpath, *args):
 
 
 if __name__ == "__main__":
-	texts = read_data("data")
-	print(texts)
+	dm, names = distance_matrix("data")
+	print(dm)
+	
