@@ -71,8 +71,6 @@ def plot_diagrams(cxs, dim=0):
 		cx.plot_persistence_barcode(dim)
 		cx.plot_persistence_diagram(dim)
 
-
-
 if __name__ == "__main__":
 	cxs_alpha = read_cxs("data", None)
 	cxs_hell = read_cxs("data", hellinger_dist)
