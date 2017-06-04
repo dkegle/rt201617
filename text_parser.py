@@ -12,7 +12,8 @@ class Text:
 	diversityRatio = 0.0 # num of different words / num of all words
 
 	def __init__(self):
-		self.histogram = defaultdict(int)	# histogram[word_length] = percentage of words with length 'word_length'
+		self.word_histogram = defaultdict(int)	# histogram[word_length] = percentage of words with length 'word_length'
+		self.sent_histogram = defaultdict(int)
 
 	def asVector(self):
 		return (self.avgWordRatio,
@@ -123,13 +124,15 @@ class TextParser:
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
 					for word in words_in_text}
 
-				# calculate histogram
+				# calculate word histogram
 				word_frac = 1.0/num_of_words
 				for word in words_in_text:
-					if len(word) in new_text.histogram:
-						new_text.histogram[len(word)] += word_frac
-					else:
-						new_text.histogram[len(word)] = word_frac
+					new_text.word_histogram[len(word)] += word_frac
+
+				# calculate sentence histogram
+				sent_frac = 1.0/num_of_sentences
+				for sentence in sentences:
+					new_text.sent_histogram[len(sentence)] += sent_frac
 
 				self.texts.append(new_text)
 			except Exception as e:

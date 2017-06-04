@@ -75,18 +75,46 @@ def plot_diagrams(cxs, dim=0):
 		cx.plot_persistence_diagram(dim)
 
 if __name__ == "__main__":
-	cxs_alpha = read_cxs("data", None)
-	mat_alpha = bottleneck_distance_matrix(cxs_alpha)
 
-	for dist in [m.hellinger_word, m.chisq_word, m.euclidean_hist_word,
-		     m.hellinger_sent, m.chisq_sent, m.euclidean_hist_sent,
-		     m.euclidean]:
+	f = open(devnull, "w")
+	sys.stdout = f
+	cxs_alpha = read_cxs("data", None)
+	mat_alpha, names = bottleneck_distance_matrix(cxs_alpha)
+	cxs_rips = read_cxs("data", m.euclidean)
+	mat_rips, _ = bottleneck_distance_matrix(cxs_rips)
+	sys.stdout = sys.__stdout__;
+	f.close()
+
+	print("=======================================================================")
+	print("Alpha complex:")
+	print(names)
+	print(mat_alpha)
+	print()
+	print("=======================================================================")
+	print("Rips complex:")
+	print(names)
+	print(mat_rips)
+
+	for dist_word, dist_sent in zip([m.hellinger_word, m.chisq_word, m.euclidean_hist_word],
+					[m.hellinger_sent, m.chisq_sent, m.euclidean_hist_sent]):
 		# Suppress printing
 		f = open(devnull, "w")
 		sys.stdout = f
-		cxs = read_cxs("data", dist)
-		mat = bottleneck_distance_matrix(cxs)
+		cxs_word = read_cxs("data", dist_word)
+		cxs_sent = read_cxs("data", dist_sent)
+		mat_word, names = bottleneck_distance_matrix(cxs_word)
+		mat_sent, _ = bottleneck_distance_matrix(cxs_sent)
 		sys.stdout = sys.__stdout__;
 		f.close()
-		print("Distance: " + str(dist))
-		print(mat)
+		print()
+		print("=======================================================================")
+		print("Rips complex with " + str(dist_word) + ":")
+		print("word:")
+		print(names)
+		print(mat_word)
+		print("sentence:")
+		print(names)
+		print(mat_sent)
+		print("both:")
+		print(names)
+		print(mat_word + mat_sent)
