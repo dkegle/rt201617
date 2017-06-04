@@ -1,0 +1,107 @@
+\documentclass[unknownkeysallowed]{beamer}
+
+\mode<presentation> {
+
+\usetheme{Madrid}
+
+}
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{algorithmicx, algpseudocode}
+
+\usepackage{varwidth}
+
+\algrenewcommand\alglinenumber[1]{\scriptsize #1:}
+
+\renewcommand{\algorithmicrequire}{{\bf Vhod:}}
+
+\def\R{\mathbb R}
+\def\N{\mathbb N}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[Text Analysis]{Text classification using persistent homology} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{Matija Čufar, Domen Keglevič} % Your name
+\institute[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+Faculty of Computer and Information Science \\ % Your institution for the title page
+\medskip
+}
+\date{\today} % Date, can be changed to a custom date
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{Problem description} 
+\begin{block}{Problem}
+\begin{columns}[c]
+\column{.6\textwidth}
+	Given sets of texts from different domains, build a classifier which can distinguish between the domains.
+\column{.35\textwidth}
+	\includegraphics[width=0.9\linewidth]{different_domains}
+\end{columns}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solution idea}
+\begin{itemize}
+\item Use persistent homology.
+\bigskip
+\item For each text calculate six features (get a vector in $\R ^6$).
+\bigskip
+\item Make an alpha complex using vectors of features.
+\bigskip
+\item Calculate bottleneck distance between persistence diagrams.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Which features?}
+We calculated the following features:
+\medskip
+\begin{itemize}
+\item average word length / longest word length
+\bigskip
+\item average sentence length / longest sentence length
+\bigskip
+\item three words with top tf-idf / num of all words
+\bigskip
+\item num of words with at most eight chars / num of all words
+\bigskip
+\item num of words with at least nine chars / num of all words
+\bigskip
+\item num of different words / num of all words
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+
+\end{frame}
+
+\begin{frame}{The End}
+\Huge{\centerline{The End}}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

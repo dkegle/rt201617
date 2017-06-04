@@ -11,6 +11,9 @@ class Text:
 	atLeastNineRatio = 0.0 # num of words with at least nine chars / num of all words
 	diversityRatio = 0.0 # num of different words / num of all words
 
+	def __init__(self):
+		self.histogram = {}	# histogram[word_length] = percentage of words with length 'word_length'
+
 	def asVector(self):
 		return (self.avgWordRatio,
 				self.avgSentenceRatio,
@@ -119,12 +122,20 @@ class TextParser:
 				word_frequencies[new_text] = {word: c[word]/num_of_words \
 					for word in words_in_text}
 
+				# calculate histogram
+				word_frac = 1.0/num_of_words
+				for word in words_in_text:
+					if len(word) in new_text.histogram:
+						new_text.histogram[len(word)] += word_frac
+					else:
+						new_text.histogram[len(word)] = word_frac
+
 				self.texts.append(new_text)
 			except Exception as e:
 				print("Failed to load " + text)
 				print(str(e))
 				print("Skipping to next file")
-
+		
 		# calculate tf-idf
 		word_idf = {}
 		for text in self.texts:

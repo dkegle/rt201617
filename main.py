@@ -4,6 +4,7 @@ from os import listdir
 from os import path
 import numpy as np
 import time
+from matplotlib import pyplot as plt
 
 line_stop = ".!?"
 word_split = " ,"
@@ -28,25 +29,33 @@ def read_data(dirpath, line_stop=".!?", word_split=" ,",
 
 	return res, names
 
-def distance_matrix(dirpath, *args):
+def read_cxs(dirpath, *args):
+	""" Read a list of TextComplex from directory.
+	"""
 	texts, names = read_data(dirpath, *args)
-	cxs = []
-	mat = np.zeros((len(texts), len(texts)))
+	return [TextComplex(t, n) for t,n in zip(texts, names)]
 
-	for i in range(len(texts)):
-		cxs.append(TextComplex(texts[i], names[i], 0.5))
+def distance_matrix(cxs):
+	mat = np.zeros((len(cxs), len(cxs)))
 
-	for i in range(len(texts)):
-		for j in range(len(texts)):
-			dist = cxs[i].bottleneck_distance_to(cxs[j])
-			print("d(%s, %s) = %f" % (names[i], names[j], dist))
+	for i, ci in enumerate(cxs):
+		for j, cj in enumerate(cxs):
+			dist = ci.bottleneck_distance_to(cj)
+			print("d(%s, %s) = %f" % (ci.name, cj.name, dist))
 
 			mat[i,j] = dist
 
-	return mat, names
+	return mat, [c.name for c in cxs]
+
+def plot_diagrams(cxs, dim=0):
+	for cx in cxs:
+		print(cx.name)
+		cx.plot_persistence_barcode(dim)
+		cx.plot_persistence_diagram(dim)
+
 
 
 if __name__ == "__main__":
-	dm, names = distance_matrix("data")
-	print(dm)
-	
+	cxs = read_cxs("data")
+	mat = distance_matrix(cxs)
+	#print(mat)
