@@ -5,7 +5,6 @@
 }
 
 \usepackage{graphicx} % Allows including images
-\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 
 \usepackage[utf8]{inputenc}
 \usepackage[slovene]{babel}
@@ -14,7 +13,6 @@
 \usepackage{varwidth}
 
 \usepackage[labelformat=empty]{caption}
-\addto\captionsslovene{\renewcommand{\figurename}{Figure}}
 
 \def\R{\mathbb R}
 
@@ -76,11 +74,11 @@ We calculated several features:
 \smallskip
 \item Average word length / longest word length,
 \bigskip
-\item num of different words / num of all words,
+\item Num of different words / num of all words,
 \bigskip
-\item three words with top tf-idf / num of all words,
+\item Three words with top tf-idf / num of all words,
 \bigskip
-\item etc.
+\item Etc.
 \bigskip
 \item Separately: distribution of word and sentence length.
 %\bigskip
@@ -134,7 +132,7 @@ Some persistence diagrams:
 
 
 \begin{frame}
-\frametitle{Results (vector of features)}
+\frametitle{Results (vectors of features)}
 \bigskip
 \begin{figure}
 \begin{tabular}{ c c c c c c }
@@ -163,7 +161,7 @@ Some persistence diagrams:
 \end{frame}
 
 \begin{frame}
-\frametitle{Results (histograms)}
+\frametitle{Results (distribution of sentence lengths)}
 
 \begin{figure}
 \begin{tabular}{ c c c c c c }
@@ -175,7 +173,7 @@ Some persistence diagrams:
   bible-old   & 0.185 & 0.132 & 0.088 & 0.000\\
 \end{tabular}
 \caption{Bottleneck distance (Rips with abstract points,  
-$d(x,y)$ is Euclidean distance).}
+$d(P,Q)$ is Euclidean distance).}
 \end{figure}
 
 \begin{figure}
@@ -188,7 +186,7 @@ $d(x,y)$ is Euclidean distance).}
     bible-old   &0.018 & 0.112 & 0.040 & 0.000 \\
 \end{tabular}
 \caption{Bottleneck distance (Rips with abstract points, 
-$d(x,y)$ is Helliger distance).}
+$d(P,Q) = \sqrt{\frac{1}{2}\sum \left ( \sqrt{p_i} - \sqrt{q_i}\right )^2 }$, Helliger distance).}
 \end{figure}
 
 \end{frame}
