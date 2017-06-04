@@ -1,12 +1,11 @@
 from math import log, sqrt
-from collections import Counter
+from collections import Counter, defaultdict
 import re
 
 def distance(text_1, text_2):
 	""" Current: euclidean distance
 	TODO: include histograms into distance calculation """
 	return sqrt(sum([(x1-x2)**2 for x1,x2 in zip(text_1.asVector(), text_2.asVector())]))
-
 
 class Text:
 	text_file = ""
@@ -18,7 +17,7 @@ class Text:
 	diversityRatio = 0.0 # num of different words / num of all words
 
 	def __init__(self):
-		self.histogram = {}	# histogram[word_length] = percentage of words with length 'word_length'
+		self.histogram = defaultdict(int)	# histogram[word_length] = percentage of words with length 'word_length'
 
 	def asVector(self):
 		return (self.avgWordRatio,
@@ -142,7 +141,7 @@ class TextParser:
 				print("Failed to load " + text)
 				print(str(e))
 				print("Skipping to next file")
-		
+
 		# calculate tf-idf
 		word_idf = {}
 		for text in self.texts:
