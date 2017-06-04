@@ -1,11 +1,14 @@
 from text_parser import TextParser
-from metrics import get_distance_matrix, hellinger_dist, chisq_dist, euclidean_dist
+import metrics as m
 from processing import TextComplex, AbstractTextComplex
-from os import listdir
-from os import path
+from os import listdir, path, devnull
 import numpy as np
 import time
+import sys
 from matplotlib import pyplot as plt
+
+# Better formatting
+np.set_printoptions(formatter={'float': '{: 0.3f}'.format})
 
 line_stop = ".!?"
 word_split = " ,"
@@ -36,7 +39,7 @@ def read_data(dirpath, metric = None, line_stop=".!?", word_split=" ,",
 		for text_set in text_sets:
 			global ts
 			ts = text_set
-			res.append(get_distance_matrix(text_set, metric))
+			res.append(m.distance_matrix(text_set, metric))
 	else:
 		res = [[txt.asVector() for txt in text_set] for text_set in text_sets]
 
@@ -52,7 +55,7 @@ def read_cxs(dirpath, metric = None, *args):
 		texts, names = read_data(dirpath, None, *args)
 		return [TextComplex(t, n) for t,n in zip(texts, names)]
 
-def distance_matrix(cxs):
+def bottleneck_distance_matrix(cxs):
 	""" for bottleneck distance between diagrams """
 	mat = np.zeros((len(cxs), len(cxs)))
 
@@ -73,18 +76,17 @@ def plot_diagrams(cxs, dim=0):
 
 if __name__ == "__main__":
 	cxs_alpha = read_cxs("data", None)
-	cxs_hell = read_cxs("data", hellinger_dist)
-	cxs_chi = read_cxs("data", chisq_dist)
-	cxs_euc = read_cxs("data", euclidean_dist)
-	mat_alpha = distance_matrix(cxs_alpha)
-	mat_hell = distance_matrix(cxs_hell)
-	mat_chi = distance_matrix(cxs_chi)
-	mat_euc = distance_matrix(cxs_euc)
-	print("ALPHA:")
-	print(mat_alpha)
-	print("VIETORIS HELLINGER:")
-	print(mat_hell)
-	print("VIETORIS CHI SQUARED:")
-	print(mat_chi)
-	print("VIETORIS EUCLIDEAN:")
-	print(mat_euc)
+	mat_alpha = bottleneck_distance_matrix(cxs_alpha)
+
+	for dist in [m.hellinger_word, m.chisq_word, m.euclidean_hist_word,
+		     m.hellinger_sent, m.chisq_sent, m.euclidean_hist_sent,
+		     m.euclidean]:
+		# Suppress printing
+		f = open(devnull, "w")
+		sys.stdout = f
+		cxs = read_cxs("data", dist)
+		mat = bottleneck_distance_matrix(cxs)
+		sys.stdout = sys.__stdout__;
+		f.close()
+		print("Distance: " + str(dist))
+		print(mat)
