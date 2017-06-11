@@ -17,11 +17,10 @@
 \overfullrule=15pt % oznaci predlogo vrstico
 
 
-\newtheorem{definicija}{Definicija}[section]
-\newtheorem{lema}[definicija]{Lema}
-\newtheorem{izrek}[definicija]{Izrek}
-\newtheorem{trditev}[definicija]{Trditev}
-\newtheorem{posledica}[definicija]{Posledica}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
 
 
 \def\R{\mathbb R}
@@ -35,7 +34,7 @@
 
 \thispagestyle{empty}
 \noindent{\large
-University of Ljubljana \hfill Ljubljana, \today\\[1mm]
+University of Ljubljana \hfill  \today\\[1mm]
 Faculty of Computer and Information Science  \\[5mm]
 %IŠRM -- 2.~stopnja 
 }
@@ -51,31 +50,29 @@ Matija Čufar, Domen Keglevič\\[6mm]
 % tu se zacne tekst seminarja
 \section{Introduction}
 
-\section{Algoritem}
+\section{Uniform functions}
 
-\begin{definicija}
-Funkcija $f\colon [a,b]\to\R$ je {\em zvezna}, "ce...
-\end{definicija}
+\begin{definition}
+Function $f\colon [a,b]\to\R$ is {\em uniformly continuous}, if...
+\end{definition}
 %
-\begin{izrek}
-Zvezna funkcija na zaprtem intervalu je enakomerno zvezna.
-\end{izrek}
+\begin{theorem}
+Continuous function on closed interval is uniformly continuous.
+\end{theorem}
 %
 \proof
-Izberimo $\varepsilon>0$.
+Let $\varepsilon>0$.
 \endproof
 
-\subsection{{\em Fat line} in {\em fat curve}}
+\subsection{subsection}
 
-\subsection{Iskanje intervalov}
-
-\subsection{Psevdo koda}
-
-\begin{lema}
-Naj bo $f$ zvezna in ...
-\end{lema}
+\begin{lemma}
+Let $f$ be continuous and ...
+\end{lemma}
 
 \section{Results}
+
+argle bargle
 
 % seznam uporabljene literature
 \begin{thebibliography}{99}
