@@ -102,7 +102,7 @@ built Alpha and Vietoris-Rips complexes on each of the domains.
 \subsection{Distribution based approach}
 
 Our second approach involved computing distributions of word and sentence
-lengths. This gives us two distributions for each text. Two distributions of the same type (word or sentence) can then by compared using the following distance measures:
+lengths. This gives us two distributions for each text. Two distributions of the same type (word or sentence) can then be compared using the following distance measures:
 
 \begin{itemize}
 \item The Hellinger distance:
@@ -115,7 +115,7 @@ lengths. This gives us two distributions for each text. Two distributions of the
 \item the Chi-squared distance:
 
 \begin{equation*}
-  \chi^2(P,Q) = \frac{(p_i - q_i)^2}{2(p_i + q_i + \varepsilon)}\ ,
+  \chi^2(P,Q) = \frac{1}{2}\sum _{i=1}^n\frac{(p_i - q_i)^2}{(p_i + q_i + \varepsilon)}\ ,
 \end{equation*}
 
 \item the Euclidean distance:
