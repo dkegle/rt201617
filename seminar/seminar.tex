@@ -6,6 +6,8 @@
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{algorithmicx,algpseudocode}
 \usepackage{graphicx}
+\usepackage{hyperref}
+
 
 \textwidth 15cm
 \textheight 24cm
@@ -48,7 +50,7 @@ Matija Čufar, Domen Keglevič\\[6mm]
 
 \section{Introduction}
 
-\emph{TODO: nekaj o vztrajni homologiji in mogoče analizi teksta}
+\emph{\textcolor{red}{TODO}: nekaj o vztrajni homologiji in mogoče analizi teksta}
 
 In this report, we attempt to classify texts from four different domains by
 comparing their persistence diagrams.
@@ -58,9 +60,10 @@ comparing their persistence diagrams.
 We have chosen to attempt to classify texts from the following domains:
 
 \begin{itemize}
+  \setlength\itemsep{0.5em}
 \item Excerpts from the Old and New Testaments of the Bible,
-\item abstracts of articles from phys.org,
-\item recipes from allrecipes.com.
+\item articles from \url{phys.org},
+\item recipes from \url{allrecipes.com}.
 \end{itemize}
 
 
@@ -72,28 +75,27 @@ To compute the persistent homology of a data set, we first need to represent it
 as a simplicial, or some other kind of complex. We used the following two
 approaches to build simplicial complexes for each of the domains:
 
-\subsection{Feature-based Alpha and Vietoris-Rips complexes}
+\subsection{Feature based approach}
 
-Our first approach involved computing the following features for each of the
-texts:
-
+In our first approach we associated each text with a point in $\R ^6$. Each dimension was representing one of text features. We used the following features:
 \begin{itemize}
+  \setlength\itemsep{0.5em}
   \item the ratio of (average word length)/(longest word length),
   \item the ratio of (average sentence length)/(longest sentence length),
   \item the ratio of the total number of three words with the highest tf-idf
     value among all the words,
   \item the ratio of the number of words of length $\le 8$ among all words,
   \item the ratio of the number of words of length $\ge 9$ among all words.
+  \item the ratio of (number of different words)/(number of all words)
 \end{itemize}
 
-This gives us a point in $\R^5$ for each of the texts. We used these points to
-build Alpha and Vietoris-Rips complexes on each of the domains.
+After computing features and mapping texts to points in $\R ^6$ we
+built Alpha and Vietoris-Rips complexes on each of the domains.
 
-\subsection{Distribution distance-based Vietoris-Rips complexes}
+\subsection{Distribution based approach}
 
-Our second approach involved computing the distributions of word and sentence
-lengths and calculating the distances between the texts using the following
-distance measures:
+Our second approach involved computing distributions of word and sentence
+lengths. This gives us two distributions for each text. Two distributions of the same type (word or sentence) can then by compared using the following distance measures:
 
 \begin{itemize}
 \item The Hellinger distance:
@@ -118,11 +120,11 @@ distance measures:
 
 \noindent
 where $P$ and $Q$ are the discrete distributions and $p_i$ and $q_i$ are the
-$i$-th bins of those distributions. The $\varepsilon$ in the Chi-squared
+$i$-th bins of corresponding distributions. The $\varepsilon$ in the Chi-squared
 distance is a small constant used to avoid dividing by zero.
 
-We used these distances to compute a distance matrix for each of the
-domains and used the distance matrices to build Vietoris-Rips complexes.
+We used these distances to compute distance matrix for each of the
+domains and used distance matrices to build Vietoris-Rips complexes.
 
 \subsection{Domain comparison}
 
@@ -141,25 +143,25 @@ barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
 
 As we can see from the distance matrix, the method did not produce meaningful
 results. The first thing we notice is that all the distances are very small,
-with the highest being only 0.008. Other examples that show the ineffectiveness
+with the highest being only $0.008$. Other examples that show the ineffectiveness
 of this method are the fact that the Old Testament differs the most from the New
 Testament and the fact that according to this method, physics article abstracts
 are very similar to recipes.
 
 Something we notice from the barcode plots is that
-\emph{TODO: napisat neki o 4d zadevah v receptih}
+\emph{\textcolor{red}{TODO}: napisat neki o 4d zadevah v receptih}
 
 We will not present the results for the Vietoris-Rips complex in this report,
 because the results are very similar.
 
 \begin{table}
   \centering
-  \begin{tabular}{l|llll}
+  \begin{tabular}{c|ccccc}
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0.000 & 0.008 & 0.003 & 0.003 \\
-    New Testament & 0.008 & 0.000 & 0.008 & 0.008 \\
-    phys.org      & 0.003 & 0.008 & 0.000 & 0.002 \\
-    recipes       & 0.003 & 0.008 & 0.002 & 0.000 \\
+    Old Testament & $0.000$ & $0.008$ & $0.003$ & $0.003$ \\
+    New Testament & $0.008$ & $0.000$ & $0.008$ & $0.008$ \\
+    phys.org      & $0.003$ & $0.008$ & $0.000$ & $0.002$ \\
+    recipes       & $0.003$ & $0.008$ & $0.002$ & $0.000$ \\
   \end{tabular}
 
   \caption{The distance matrix calculated from the Alpha complexes.}
@@ -179,16 +181,16 @@ because the results are very similar.
 
 \subsection{Distribtuion distance-based Vietoris-Rips complexes}
 
-\emph{TODO: tekst}
+\emph{\textcolor{red}{TODO}: tekst}
 
 \begin{table}
   \centering
-  \begin{tabular}{l|llll}
+  \begin{tabular}{c|ccccc}
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0.000 & 0.015 & 0.040 & 0.112 \\
-    New Testament & 0.015 & 0.000 & 0.033 & 0.103 \\
-    phys.org      & 0.040 & 0.033 & 0.000 & 0.105 \\
-    recipes       & 0.112 & 0.103 & 0.105 & 0.000 \\
+    Old Testament & $0.000$ & $0.015$ & $0.040$ & $0.112$ \\
+    New Testament & $0.015$ & $0.000$ & $0.033$ & $0.103$ \\
+    phys.org      & $0.040$ & $0.033$ & $0.000$ & $0.105$ \\
+    recipes       & $0.112$ & $0.103$ & $0.105$ & $0.000$ \\
   \end{tabular}
 
   \caption{The distance matrix calculated from the Vietoris-Rips complexes,
@@ -215,6 +217,7 @@ As we saw in the previous section, the results are not very good.
 
 
 \section{Authors contributions}
+We have both contributed to most parts of the seminar work. The exception being that Domen prepared most of the presentation and Matija wrote most of the report. Detailed contributions can be seen in commit history of GitHub repository \url{https://github.com/dkegle/rt201617} which also contains all of the code and data.
 
 % biblio
 \bibliographystyle{plain}
