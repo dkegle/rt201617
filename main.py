@@ -7,6 +7,9 @@ import time
 import sys
 from matplotlib import pyplot as plt
 
+plt.rcParams["figure.figsize"] = (6,6)
+plt.rcParams["savefig.directory"] = "plots"
+
 # Better formatting
 np.set_printoptions(formatter={'float': '{: 0.3f}'.format})
 
@@ -72,7 +75,56 @@ def plot_diagrams(cxs, dim=0):
 	for cx in cxs:
 		print(cx.name)
 		cx.plot_persistence_barcode(dim)
+		#plt.savefig("plots/barcodes/" + cx.name.split("/")[1] + ".pdf", dpi=100)
 		cx.plot_persistence_diagram(dim)
+
+def get_barcode_plot(cx, name=None):
+	colors = {0: "red",
+		  1: "green",
+		  2: "blue",
+		  3: "teal",
+		  4: "magenta",
+		  5: "yellow"}
+
+	# Spli the diagram into dims.
+	dims = sorted(list(set([d[0] for d in cx.diag])))
+	dimdiag = {}
+	for dim in dims:
+		dimdiag[dim] = ([d[1] for d in cx.diag if d[0] == dim])
+
+	# Create plot.
+	fig, ax = plt.subplots()
+
+	y = 1
+	maxx = -1
+	for dim in dims:
+		ys = []
+		xmins = []
+		xmaxs = []
+		for diag in dimdiag[dim]:
+			if diag[1] == float("inf"):
+				diag = (diag[0], 1e10)
+			elif diag[1] > maxx:
+				maxx = diag[1]
+			xmins.append(diag[0])
+			xmaxs.append(diag[1])
+			ys.append(y)
+			y += 1
+
+		ax.hlines(y=ys, xmin=xmins, xmax=xmaxs,
+			  linewidth=200 // len(cx.diag),
+                          color = colors[dim],
+			  label="dim = " + str(dim))
+	ax.set_ylim([0.5, y+0.5])
+	ax.set_xlim([-maxx*0.1, maxx*1.1])
+	ax.legend()
+	ax.get_yaxis().set_visible(False)
+	if name == None:
+		fig.suptitle(cx.name.split("/")[-1])
+	else:
+		fig.suptitle(name)
+	return fig, ax
+
 
 if __name__ == "__main__":
 
@@ -115,6 +167,12 @@ if __name__ == "__main__":
 		print("sentence:")
 		print(names)
 		print(mat_sent)
-		print("both:")
-		print(names)
-		print(mat_word + mat_sent)
+
+	fig,ax = get_barcode_plot(cxs_alpha[0], "Old Testament")
+	fig.savefig("plots/barcodes/bible-old.pdf")
+	fig,ax = get_barcode_plot(cxs_alpha[2], "phys.org")
+	fig.savefig("plots/barcodes/phys.pdf")
+	fig,ax = get_barcode_plot(cxs_alpha[3], "Recipes")
+	fig.savefig("plots/barcodes/recipes.pdf")
+	fig,ax = get_barcode_plot(cxs_alpha[4], "New Testament")
+	fig.savefig("plots/barcodes/bible-new.pdf")

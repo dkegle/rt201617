@@ -1,4 +1,5 @@
 import gudhi as gd
+import matplotlib.pyplot as plt
 
 # Base class
 class Complex:
@@ -17,7 +18,7 @@ class Complex:
 			selfdiag = [x for x in self.diag if x[0] == dim]
 		else:
 			selfdiag = self.diag
-		gd.plot_persistence_diagram(selfdiag)
+		return gd.plot_persistence_diagram(selfdiag)
 
 	def plot_persistence_barcode(self, dim=0):
 		""" Plot barcode diagram.
@@ -26,7 +27,7 @@ class Complex:
 			selfdiag = [x for x in self.diag if x[0] == dim]
 		else:
 			selfdiag = self.diag
-		gd.plot_persistence_barcode(selfdiag)
+		return gd.plot_persistence_barcode(selfdiag)
 
 	def bottleneck_distance_to(self, other, dim=0, e=0):
 		""" Compute the bottleneck distance to antoher TextComplex.
