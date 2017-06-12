@@ -49,15 +49,20 @@ Matija Čufar, Domen Keglevič\\[6mm]
 \bigskip
 
 \section{Introduction}
+Persistent homology is a method from topological data analysis which enables us to calculate and 
+compare features of topological spaces at different spatial resolutions. Some features persist 
+at wide range of spatial resolutions and are more likely to represent the underlying space. This 
+approach  has been applied to many different domains ranging from image analysis
+ (\textcolor{red}{bib [2]}) to
+  genome studies (\textcolor{red}{bib [3]}).
 
-\emph{\textcolor{red}{TODO}: nekaj o vztrajni homologiji in mogoče analizi teksta}
-
-In this report, we attempt to classify texts from four different domains by
-comparing their persistence diagrams.
+ In this seminar we try to use persistence homology for text classification. We pick four 
+ different text domains and try to 
+distinguish them based their persistence diagrams.
 
 \section{Methods}
 
-We have chosen to attempt to classify texts from the following domains:
+We have chosen texts from the following domains:
 
 \begin{itemize}
   \setlength\itemsep{0.5em}
@@ -135,11 +140,9 @@ between the texts taken from the Bible should be smaller than the rest.
 
 \section{Results}
 
-In the next secitons, we present the results given by both our approaches.
-
-\subsection{Feature-based Alpha and Vietoris-Rips complexes} The bottleneck
-distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}. The
-barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
+\subsection{Feature based approach} Bottleneck
+distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}. 
+Barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
 
 As we can see from the distance matrix, the method did not produce meaningful
 results. The first thing we notice is that all the distances are very small,
@@ -151,8 +154,7 @@ are very similar to recipes.
 Something we notice from the barcode plots is that
 \emph{\textcolor{red}{TODO}: napisat neki o 4d zadevah v receptih}
 
-We will not present the results for the Vietoris-Rips complex in this report,
-because the results are very similar.
+Results for the Vietoris-Rips complex are similar to the results for Alpha complex.
 
 \begin{table}
   \centering
@@ -179,7 +181,7 @@ because the results are very similar.
   \label{fig:barcode:alpha}
 \end{figure}
 
-\subsection{Distribtuion distance-based Vietoris-Rips complexes}
+\subsection{Distribution based approach}
 
 \emph{\textcolor{red}{TODO}: tekst}
 
@@ -223,5 +225,7 @@ We have both contributed to most parts of the seminar work. The exception being 
 \bibliographystyle{plain}
 \bibliography{biblio}
 
+% [2] Image analysis: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4448533/
+% [3] Genome-wide maps: http://www.cell.com/cell-systems/pdf/S2405-4712(16)30183-1.pdf
 
 \end{document}
