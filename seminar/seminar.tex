@@ -64,11 +64,12 @@ We have chosen to attempt to classify texts from the following domains:
 \end{itemize}
 
 For each of the domains, we picked ten texts, each at least 100 words long. We
-used the Gudhi library~\cite{maria2014gudhi} to compute persistent homology on
-the texts.
+used the Gudhi~\cite{maria2014gudhi}, a library for topological data analysis,
+to compute persistent homology on the texts.
 
-We used the following two approaches to build simplicial complexes for each of
-the domains:
+To compute the persistent homology of a data set, we first need to represent it
+as a simplicial, or some other kind of complex. We used the following two
+approaches to build simplicial complexes for each of the domains:
 
 \subsection{Feature-based Alpha and Vietoris-Rips complexes}
 
@@ -104,7 +105,7 @@ distance measures:
 \item the Chi-squared distance:
 
 \begin{equation*}
-  \chi^2(P,Q) = \frac{1}{2} \frac{(p_i - q_i)^2}{p_i + q_i + \varepsilon}\ ,
+  \chi^2(P,Q) = \frac{(p_i - q_i)^2}{2(p_i + q_i + \varepsilon)}\ ,
 \end{equation*}
 
 \item the Euclidean distance:
@@ -125,11 +126,31 @@ domains and used the distance matrices to build Vetoris-Rips complexes.
 \subsection{Domain comparsion}
 
 When the simplicial complexes were built, we calculated persistence diagrams for
-each complex and computed the bottleneck distances between them.
+each complex and computed the bottleneck distances between them. We expected the
+distances would help us distinguish between the texts. For example, the distance
+between the texts taken from the Bible should be smaller than the rest.
 
 \section{Results}
 
-% Template za matriko
+In the next secitons, we present the results given by both our approaches.
+
+\subsection{Feature-based Alpha and Vietoris-Rips complexes} The bottleneck
+distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}. The
+barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
+
+As we can see from the distance matrix, the method did not produce meaningful
+results. The first thing we notice is that all the distances are very small,
+with the highest being only 0.008. Other examples that show the ineffectiveness
+of this method are the fact that the Old Testament differs the most from the New
+Testament and the fact that according to this method, physics article abstracts
+are very similar to recipes.
+
+Something we notice from the barcode plots is that
+\emph{TODO: napisat neki o 4d zadevah v receptih}
+
+We will not present the results for the Vietoris-Rips complex in this report,
+because the results are very similar.
+
 \begin{table}
   \centering
   \begin{tabular}{l|llll}
@@ -139,26 +160,58 @@ each complex and computed the bottleneck distances between them.
     phys.org      & 0.003 & 0.008 & 0.000 & 0.002 \\
     recipes       & 0.003 & 0.008 & 0.002 & 0.000 \\
   \end{tabular}
+
   \caption{The distance matrix calculated from the Alpha complexes.}
   \label{tab:alpha}
 \end{table}
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-new}
-  \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-old}
-  \includegraphics[width=0.45\textwidth]{../plots/barcodes/phys}
-  \includegraphics[width=0.45\textwidth]{../plots/barcodes/recipes}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-new-alpha}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-old-alpha}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/phys-alpha}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/recipes-alpha}
   \caption{Persistence barcodes of the domains, calculated from the Alpha
     complexes.}
   \label{fig:barcode:alpha}
 \end{figure}
 
+\subsection{Distribtuion distance-based Vietoris-Rips complexes}
+
+\emph{TODO: tekst}
+
+\begin{table}
+  \centering
+  \begin{tabular}{l|llll}
+                  & Old Testament & New Testament & phys.org & recipes \\ \hline
+    Old Testament & 0.000 & 0.015 & 0.040 & 0.112 \\
+    New Testament & 0.015 & 0.000 & 0.033 & 0.103 \\
+    phys.org      & 0.040 & 0.033 & 0.000 & 0.105 \\
+    recipes       & 0.112 & 0.103 & 0.105 & 0.000 \\
+  \end{tabular}
+
+  \caption{The distance matrix calculated from the Vietoris-Rips complexes,
+    built using the Hellinger distance between sentence length distribution.}
+  \label{tab:hell}
+\end{table}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-new-hell}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-old-hell}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/phys-hell}
+  \includegraphics[width=0.45\textwidth]{../plots/barcodes/recipes-hell}
+  \caption{Persistence barcodes of the domains, calculated from the
+    Vietoris-Rips complexes, built using the Hellinger distance between sentence
+    length distributions.}
+  \label{fig:barcode:hell}
+\end{figure}
+
 \section{Conclusion}
 
-\emph{TODO: rezultati so slabi itd}
+As we saw in the previous section, the results are not very good.
 
-\emph{TODO: kaj bi blo za probat}
+
 
 \section{Authors contributions}
 
