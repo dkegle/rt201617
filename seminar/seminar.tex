@@ -84,8 +84,8 @@ texts:
   \item the ratio of the number of words of length $\ge 9$ among all words.
 \end{itemize}
 
-This gives us a point in five-dimensional space for each of the texts. We used
-these points to build Alpha and Vietoris-Rips complexes on each of the domains.
+This gives us a point in $\R^5$ for each of the texts. We used these points to
+build Alpha and Vietoris-Rips complexes on each of the domains.
 
 \subsection{Distribtuion distance-based Vietoris-Rips complexes}
 
@@ -134,13 +134,13 @@ each complex and computed the bottleneck distances between them.
   \centering
   \begin{tabular}{l|llll}
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0 & 0 & 0 & 0 \\
-    New Testament & 0 & 0 & 0 & 0 \\
-    phys.org      & 0 & 0 & 0 & 0 \\
-    recipes       & 0 & 0 & 0 & 0 \\
+    Old Testament & 0.000 & 0.008 & 0.003 & 0.003 \\
+    New Testament & 0.008 & 0.000 & 0.008 & 0.008 \\
+    phys.org      & 0.003 & 0.008 & 0.000 & 0.002 \\
+    recipes       & 0.003 & 0.008 & 0.002 & 0.000 \\
   \end{tabular}
-  \caption{The distance matrix}
-  \label{tab:}
+  \caption{The distance matrix calculated from the Alpha complexes.}
+  \label{tab:alpha}
 \end{table}
 
 \begin{figure}
@@ -149,7 +149,8 @@ each complex and computed the bottleneck distances between them.
   \includegraphics[width=0.45\textwidth]{../plots/barcodes/bible-old}
   \includegraphics[width=0.45\textwidth]{../plots/barcodes/phys}
   \includegraphics[width=0.45\textwidth]{../plots/barcodes/recipes}
-  \caption{TODO: grafi}
+  \caption{Persistence barcodes of the domains, calculated from the Alpha
+    complexes.}
   \label{fig:barcode:alpha}
 \end{figure}
 

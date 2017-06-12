@@ -7,7 +7,7 @@ import time
 import sys
 from matplotlib import pyplot as plt
 
-plt.rcParams["figure.figsize"] = (6,6)
+plt.rcParams["figure.figsize"] = (7,4)
 plt.rcParams["savefig.directory"] = "plots"
 
 # Better formatting
@@ -112,7 +112,7 @@ def get_barcode_plot(cx, name=None):
 			y += 1
 
 		ax.hlines(y=ys, xmin=xmins, xmax=xmaxs,
-			  linewidth=200 // len(cx.diag),
+			  linewidth=180 // len(cx.diag),
                           color = colors[dim],
 			  label="dim = " + str(dim))
 	ax.set_ylim([0.5, y+0.5])
