@@ -7,7 +7,7 @@ import time
 import sys
 from matplotlib import pyplot as plt
 
-plt.rcParams["figure.figsize"] = (6,6)
+plt.rcParams["figure.figsize"] = (7,4)
 plt.rcParams["savefig.directory"] = "plots"
 
 # Better formatting
@@ -112,7 +112,7 @@ def get_barcode_plot(cx, name=None):
 			y += 1
 
 		ax.hlines(y=ys, xmin=xmins, xmax=xmaxs,
-			  linewidth=200 // len(cx.diag),
+			  linewidth=180 // len(cx.diag),
                           color = colors[dim],
 			  label="dim = " + str(dim))
 	ax.set_ylim([0.5, y+0.5])
@@ -169,10 +169,21 @@ if __name__ == "__main__":
 		print(mat_sent)
 
 	fig,ax = get_barcode_plot(cxs_alpha[0], "Old Testament")
-	fig.savefig("plots/barcodes/bible-old.pdf")
+	fig.savefig("plots/barcodes/bible-old-alpha.pdf")
 	fig,ax = get_barcode_plot(cxs_alpha[2], "phys.org")
-	fig.savefig("plots/barcodes/phys.pdf")
+	fig.savefig("plots/barcodes/phys-alpha.pdf")
 	fig,ax = get_barcode_plot(cxs_alpha[3], "Recipes")
-	fig.savefig("plots/barcodes/recipes.pdf")
+	fig.savefig("plots/barcodes/recipes-alpha.pdf")
 	fig,ax = get_barcode_plot(cxs_alpha[4], "New Testament")
-	fig.savefig("plots/barcodes/bible-new.pdf")
+	fig.savefig("plots/barcodes/bible-new-alpha.pdf")
+
+	# Hellinger
+	cxs_hell = read_cxs("data", m.hellinger_sent)
+	fig,ax = get_barcode_plot(cxs_hell[0], "Old Testament")
+	fig.savefig("plots/barcodes/bible-old-hell.pdf")
+	fig,ax = get_barcode_plot(cxs_hell[2], "phys.org")
+	fig.savefig("plots/barcodes/phys-hell.pdf")
+	fig,ax = get_barcode_plot(cxs_hell[3], "Recipes")
+	fig.savefig("plots/barcodes/recipes-hell.pdf")
+	fig,ax = get_barcode_plot(cxs_hell[4], "New Testament")
+	fig.savefig("plots/barcodes/bible-new-hell.pdf")
