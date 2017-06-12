@@ -56,9 +56,9 @@ approach  has been applied to many different domains ranging from image analysis
  (\textcolor{red}{bib [2]}) to
   genome studies (\textcolor{red}{bib [3]}).
 
- In this seminar we try to use persistence homology for text classification. We pick four 
+ In this seminar assignment we try to use persistence homology for text classification. We pick four 
  different text domains and try to 
-distinguish them based their persistence diagrams.
+distinguish them based on their persistence diagrams.
 
 \section{Methods}
 
@@ -94,6 +94,8 @@ In our first approach we associated each text with a point in $\R ^6$. Each dime
   \item the ratio of (number of different words)/(number of all words)
 \end{itemize}
 
+Note that all features are normalized in order to avoid giving too much weight 
+to those that would have large size otherwise.
 After computing features and mapping texts to points in $\R ^6$ we
 built Alpha and Vietoris-Rips complexes on each of the domains.
 
@@ -219,7 +221,7 @@ As we saw in the previous section, the results are not very good.
 
 
 \section{Authors contributions}
-We have both contributed to most parts of the seminar work. The exception being that Domen prepared most of the presentation and Matija wrote most of the report. Detailed contributions can be seen in commit history of GitHub repository \url{https://github.com/dkegle/rt201617} which also contains all of the code and data.
+Both authors have contributed to most parts of the seminar work. The exception being that Domen prepared most of the presentation and Matija wrote most of the report. Detailed contributions can be seen in commit history of GitHub repository \url{https://github.com/dkegle/rt201617} which also contains all of the code and data.
 
 % biblio
 \bibliographystyle{plain}
