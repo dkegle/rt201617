@@ -49,16 +49,16 @@ Matija Čufar, Domen Keglevič\\[6mm]
 \bigskip
 
 \section{Introduction}
-Persistent homology is a method from topological data analysis which enables us
-to calculate and compare features of topological spaces at different spatial
-resolutions. Some features persist at wide range of spatial resolutions and are
-more likely to represent the underlying space. This approach has been applied to
-many different domains ranging from image analysis~\cite{nakane2015homology} to
-genome studies~\cite{camara2016topological}.
+Persistent homology is a method from topological data analysis which enables us to calculate and 
+compare features of topological spaces at different spatial resolutions. Some features persist 
+at wide range of spatial resolutions and are more likely to represent the underlying space. This 
+approach  has been applied to many different domains ranging from image analysis
+ (\textcolor{red}{bib [2]}) to
+  genome studies (\textcolor{red}{bib [3]}).
 
-In this seminar assignment we try to use persistence homology for text
-classification. We pick four different text domains and try to distinguish them
-based on their persistence diagrams.
+ In this seminar assignment we try to use persistence homology for text classification. We pick four 
+ different text domains and try to 
+distinguish them based on their persistence diagrams.
 
 \section{Methods}
 
@@ -71,6 +71,7 @@ We have chosen texts from the following domains:
 \item recipes from \url{allrecipes.com}.
 \end{itemize}
 
+
 For each of the domains, we picked ten texts, each at least $100$ words long. We
 used the Gudhi~\cite{maria2014gudhi}, a library for topological data analysis,
 to compute persistent homology on the texts.
@@ -81,8 +82,7 @@ approaches to build simplicial complexes for each of the domains:
 
 \subsection{Feature based approach}
 
-In our first approach we associated each text with a point in $\R ^6$. Each
-dimension was representing one of text features. We used the following features:
+In our first approach we associated each text with a point in $\R ^6$. Each dimension was representing one of text features. We used the following features:
 \begin{itemize}
   \setlength\itemsep{0.5em}
   \item the ratio of (average word length)/(longest word length),
@@ -90,21 +90,28 @@ dimension was representing one of text features. We used the following features:
   \item the ratio of the total number of three words with the highest tf-idf
     value among all the words,
   \item the ratio of the number of words of length $\le 8$ among all words,
+<<<<<<< HEAD
+  \item the ratio of the number of words of length $\ge 9$ among all words,
+  \item the ratio of (number of different words)/(number of all words).
+\end{itemize}
+
+This gives us a point in $\R^6$ for each of the texts. We used these points to
+build Alpha and Vietoris-Rips complexes on each of the domains.
+=======
   \item the ratio of the number of words of length $\ge 9$ among all words.
   \item the ratio of (number of different words)/(number of all words)
 \end{itemize}
 
-Note that all features are normalized in order to avoid giving too much weight
+Note that all features are normalized in order to avoid giving too much weight 
 to those that would have large size otherwise.
 After computing features and mapping texts to points in $\R ^6$ we
 built Alpha and Vietoris-Rips complexes on each of the domains.
+>>>>>>> 56019df42d6d2beecb6ca3725f19de9b480bd7fe
 
 \subsection{Distribution based approach}
 
 Our second approach involved computing distributions of word and sentence
-lengths. This gives us two distributions for each text. Two distributions of the
-same type (word or sentence) can then be compared using the following distance
-measures:
+lengths. This gives us two distributions for each text. Two distributions of the same type (word or sentence) can then be compared using the following distance measures:
 
 \begin{itemize}
 \item The Hellinger distance:
@@ -130,7 +137,7 @@ measures:
 \noindent
 where $P$ and $Q$ are the discrete distributions and $p_i$ and $q_i$ are the
 $i$-th bins of corresponding distributions. The $\varepsilon$ in the Chi-squared
-distance is a small positive constant used to avoid dividing by zero.
+distance is a small constant used to avoid dividing by zero.
 
 We used these distances to compute distance matrix for each of the
 domains and used distance matrices to build Vietoris-Rips complexes.
@@ -145,27 +152,28 @@ between the texts taken from the Bible should be smaller than the rest.
 \section{Results}
 
 \subsection{Feature based approach} Bottleneck
-distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}.
+distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}. 
 Barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
 
 As we can see from the distance matrix, the method did not produce meaningful
 results. The first thing we notice is that all the distances are very small,
-with the highest being only $0.008$. Other examples that show the
-ineffectiveness of this method are the fact that the Old Testament differs the
-most from the New Testament and the fact that according to this method, physics
-article abstracts are very similar to recipes.
+with the highest being only $0.008$. Other examples that show the ineffectiveness
+of this method are the fact that the Old Testament differs the most from the New
+Testament and the fact that according to this method, physics article abstracts
+are very similar to recipes.
 
-Something we notice from the barcode plots is that recipes appear to have some
-persistent four-dimensional features. These features could be used to
-distinguish recipes from other texts, but we are not sure they would appear in
-other recipe datasets.
+Something we notice from the barcode plots is that
+\emph{\textcolor{red}{TODO}: napisat neki o 4d zadevah v receptih}
 
-Results for the Vietoris-Rips complex are similar to the results for Alpha
-complex, so will skip their presentation.
+Results for the Vietoris-Rips complex are similar to the results for Alpha complex.
 
 \begin{table}
   \centering
+<<<<<<< HEAD
   \begin{tabular}{c|cccc}
+=======
+  \begin{tabular}{c|ccccc}
+>>>>>>> 56019df42d6d2beecb6ca3725f19de9b480bd7fe
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
     Old Testament & $0.000$ & $0.008$ & $0.003$ & $0.003$ \\
     New Testament & $0.008$ & $0.000$ & $0.008$ & $0.008$ \\
@@ -190,48 +198,25 @@ complex, so will skip their presentation.
 
 \subsection{Distribution based approach}
 
-The best results using the distribution distance-based method were given by the
-Hellinger and Chi-squared distances between the distributions of sentence
-lengths. The distance matrices are presented in Tables~\ref{tab:hell}
-and~\ref{tab:chi} and the persistence barcodes for the Hellinger distance are
-shown in Figure~\ref{fig:barcode:hell}.
-
-We see from the tables, that according to these method, the texts taken from the
-Bible are the most similar among each other and that recipes differ the most
-from other domains. Physics articles are somewhere in between. These are the
-results we expected, but perhaps it's worth pointing out that the distances
-between the texts are still very small and that out of all eight different ways
-of classifying the texts we tried, only these two produced meaningful
-results. Perhaps these methods only work with these specific datasets and should
-be double-checked with other text domains before drawing conclusions.
+\emph{\textcolor{red}{TODO}: tekst}
 
 \begin{table}
   \centering
-  \begin{tabular}{r|cccc}
+<<<<<<< HEAD
+  \begin{tabular}{c|cccc}
+=======
+  \begin{tabular}{c|ccccc}
+>>>>>>> 56019df42d6d2beecb6ca3725f19de9b480bd7fe
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0.000 & 0.015 & 0.040 & 0.112 \\
-    New Testament & 0.015 & 0.000 & 0.033 & 0.103 \\
-    phys.org      & 0.040 & 0.033 & 0.000 & 0.105 \\
-    recipes       & 0.112 & 0.103 & 0.105 & 0.000 \\
+    Old Testament & $0.000$ & $0.015$ & $0.040$ & $0.112$ \\
+    New Testament & $0.015$ & $0.000$ & $0.033$ & $0.103$ \\
+    phys.org      & $0.040$ & $0.033$ & $0.000$ & $0.105$ \\
+    recipes       & $0.112$ & $0.103$ & $0.105$ & $0.000$ \\
   \end{tabular}
 
   \caption{The distance matrix calculated from the Vietoris-Rips complexes,
-    built using the Hellinger distance between sentence length distributions.}
+    built using the Hellinger distance between sentence length distribution.}
   \label{tab:hell}
-\end{table}
-
-\begin{table}
-  \centering
-  \begin{tabular}{r|cccc}
-                  & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0.000 & 0.031 & 0.078 & 0.193 \\
-    New Testament & 0.031 & 0.000 & 0.060 & 0.166 \\
-    phys.org      & 0.078 & 0.060 & 0.000 & 0.154 \\
-    recipes       & 0.193 & 0.166 & 0.154 & 0.000 \\
-  \end{tabular}
-  \caption{The distance matrix calculated from the Vietoris-Rips complexes,
-    built using the Chi-squared distance between sentence length distributions.}
-  \label{tab:chi}
 \end{table}
 
 \begin{figure}
@@ -250,12 +235,10 @@ be double-checked with other text domains before drawing conclusions.
 
 As we saw in the previous section, the results are not very good.
 
+
+
 \section{Authors contributions}
-Both authors have contributed to most parts of the seminar work. The exception
-being that Domen prepared most of the presentation and Matija wrote most of the
-report. Detailed contributions can be seen in commit history of GitHub
-repository \url{https://github.com/dkegle/rt201617} which also contains all of
-the code and data.
+Both authors have contributed to most parts of the seminar work. The exception being that Domen prepared most of the presentation and Matija wrote most of the report. Detailed contributions can be seen in commit history of GitHub repository \url{https://github.com/dkegle/rt201617} which also contains all of the code and data.
 
 % biblio
 \bibliographystyle{plain}

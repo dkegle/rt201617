@@ -1,9 +1,22 @@
 \begin{thebibliography}{1}
 
+\bibitem{camara2016topological}
+Pablo~G Camara, Daniel~IS Rosenbloom, Kevin~J Emmett, Arnold~J Levine, and Raul
+  Rabadan.
+\newblock Topological data analysis generates high-resolution, genome-wide maps
+  of human recombination.
+\newblock {\em Cell Systems}, 3(1):83--94, 2016.
+
 \bibitem{maria2014gudhi}
 Cl{\'e}ment Maria, Jean-Daniel Boissonnat, Marc Glisse, and Mariette Yvinec.
 \newblock The gudhi library: Simplicial complexes and persistent homology.
 \newblock In {\em International Congress on Mathematical Software}, pages
   167--174. Springer, 2014.
+
+\bibitem{nakane2015homology}
+Kazuaki Nakane, Akihiro Takiyama, Seiji Mori, and Nariaki Matsuura.
+\newblock Homology-based method for detecting regions of interest in colonic
+  digital images.
+\newblock {\em Diagnostic pathology}, 10(1):36, 2015.
 
 \end{thebibliography}
