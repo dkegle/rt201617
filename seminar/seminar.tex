@@ -57,8 +57,8 @@ many different domains ranging from image analysis~\cite{nakane2015homology} to
 genome studies~\cite{camara2016topological}.
 
 In this seminar assignment we try to use persistence homology for text
-classification. We pick four different text domains and try to distinguish them
-based on their persistence diagrams.
+classification. We pick four different text domains and try to distinguish
+between them, based on their persistence diagrams.
 
 \section{Methods}
 
@@ -103,7 +103,7 @@ built Alpha and Vietoris-Rips complexes on each of the domains.
 
 Our second approach involved computing distributions of word and sentence
 lengths. This gives us two distributions for each text. Two distributions of the
-same type (word or sentence) can then be compared using the following distance
+same type (word or sentence) were then compared using the following distance
 measures:
 
 \begin{itemize}
@@ -248,7 +248,17 @@ be double-checked with other text domains before drawing conclusions.
 
 \section{Conclusion}
 
-As we saw in the previous section, the results are not very good.
+We have attempted to classify text domains using persistent homology. Out of the
+two approaches we used, the feature-based approach was incapable of
+distinguishing between the domains. While using distances between sentence
+length distributions showed some potential, it didn't convince us, considering
+the fact that we used domains that have almost nothing in common and that the
+detected distances were rather small.
+
+Perhaps, the results would be better and more robust if we tried using a larger
+number of texts for each domain and a larger number of domains. The method
+should also be tested against domains that have more in common, for example,
+scientific articles from different fields.
 
 \section{Authors contributions}
 Both authors have contributed to most parts of the seminar work. The exception
