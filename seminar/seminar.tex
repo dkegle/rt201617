@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper]{amsart}
-%\usepackage[slovene]{babel}
+\usepackage[slovene, english]{babel}
 \usepackage[utf8]{inputenc}
 %\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -58,12 +58,13 @@ comparing their persistence diagrams.
 We have chosen to attempt to classify texts from the following domains:
 
 \begin{itemize}
-\item Excrepts from the Old and New Testaments of the Bible,
+\item Excerpts from the Old and New Testaments of the Bible,
 \item abstracts of articles from phys.org,
 \item recipes from allrecipes.com.
 \end{itemize}
 
-For each of the domains, we picked ten texts, each at least 100 words long. We
+
+For each of the domains, we picked ten texts, each at least $100$ words long. We
 used the Gudhi~\cite{maria2014gudhi}, a library for topological data analysis,
 to compute persistent homology on the texts.
 
@@ -89,7 +90,7 @@ texts:
 This gives us a point in $\R^6$ for each of the texts. We used these points to
 build Alpha and Vietoris-Rips complexes on each of the domains.
 
-\subsection{Distribtuion distance-based Vietoris-Rips complexes}
+\subsection{Distribution distance-based Vietoris-Rips complexes}
 
 Our second approach involved computing the distributions of word and sentence
 lengths and calculating the distances between the texts using the following
@@ -122,9 +123,9 @@ $i$-th bins of those distributions. The $\varepsilon$ in the Chi-squared
 distance is a small constant used to avoid dividing by zero.
 
 We used these distances to compute a distance matrix for each of the
-domains and used the distance matrices to build Vetoris-Rips complexes.
+domains and used the distance matrices to build Vietoris-Rips complexes.
 
-\subsection{Domain comparsion}
+\subsection{Domain comparison}
 
 When the simplicial complexes were built, we calculated persistence diagrams for
 each complex and computed the bottleneck distances between them. We expected the
