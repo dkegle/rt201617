@@ -6,6 +6,8 @@
 \usepackage[dvipsnames,usenames]{color}
 \usepackage{algorithmicx,algpseudocode}
 \usepackage{graphicx}
+\usepackage{hyperref}
+
 
 \textwidth 15cm
 \textheight 24cm
@@ -47,22 +49,27 @@ Matija Čufar, Domen Keglevič\\[6mm]
 \bigskip
 
 \section{Introduction}
+Persistent homology is a method from topological data analysis which enables us
+to calculate and compare features of topological spaces at different spatial
+resolutions. Some features persist at wide range of spatial resolutions and are
+more likely to represent the underlying space. This approach has been applied to
+many different domains ranging from image analysis~\cite{nakane2015homology} to
+genome studies~\cite{camara2016topological}.
 
-\emph{TODO: nekaj o vztrajni homologiji in mogoče analizi teksta}
-
-In this report, we attempt to classify texts from four different domains by
-comparing their persistence diagrams.
+In this seminar assignment we try to use persistence homology for text
+classification. We pick four different text domains and try to distinguish them
+based on their persistence diagrams.
 
 \section{Methods}
 
-We have chosen to attempt to classify texts from the following domains:
+We have chosen texts from the following domains:
 
 \begin{itemize}
+  \setlength\itemsep{0.5em}
 \item Excerpts from the Old and New Testaments of the Bible,
-\item abstracts of articles from phys.org,
-\item recipes from allrecipes.com.
+\item articles from \url{phys.org},
+\item recipes from \url{allrecipes.com}.
 \end{itemize}
-
 
 For each of the domains, we picked ten texts, each at least $100$ words long. We
 used the Gudhi~\cite{maria2014gudhi}, a library for topological data analysis,
@@ -72,29 +79,32 @@ To compute the persistent homology of a data set, we first need to represent it
 as a simplicial, or some other kind of complex. We used the following two
 approaches to build simplicial complexes for each of the domains:
 
-\subsection{Feature-based Alpha and Vietoris-Rips complexes}
+\subsection{Feature based approach}
 
-Our first approach involved computing the following features for each of the
-texts:
-
+In our first approach we associated each text with a point in $\R ^6$. Each
+dimension was representing one of text features. We used the following features:
 \begin{itemize}
+  \setlength\itemsep{0.5em}
   \item the ratio of (average word length)/(longest word length),
   \item the ratio of (average sentence length)/(longest sentence length),
   \item the ratio of the total number of three words with the highest tf-idf
     value among all the words,
   \item the ratio of the number of words of length $\le 8$ among all words,
-  \item the ratio of the number of words of length $\ge 9$ among all words,
-  \item the ratio of (number of different words)/(number of all words).
+  \item the ratio of the number of words of length $\ge 9$ among all words.
+  \item the ratio of (number of different words)/(number of all words)
 \end{itemize}
 
-This gives us a point in $\R^6$ for each of the texts. We used these points to
-build Alpha and Vietoris-Rips complexes on each of the domains.
+Note that all features are normalized in order to avoid giving too much weight
+to those that would have large size otherwise.
+After computing features and mapping texts to points in $\R ^6$ we
+built Alpha and Vietoris-Rips complexes on each of the domains.
 
-\subsection{Distribution distance-based Vietoris-Rips complexes}
+\subsection{Distribution based approach}
 
-Our second approach involved computing the distributions of word and sentence
-lengths and calculating the distances between the texts using the following
-distance measures:
+Our second approach involved computing distributions of word and sentence
+lengths. This gives us two distributions for each text. Two distributions of the
+same type (word or sentence) can then be compared using the following distance
+measures:
 
 \begin{itemize}
 \item The Hellinger distance:
@@ -107,7 +117,7 @@ distance measures:
 \item the Chi-squared distance:
 
 \begin{equation*}
-  \chi^2(P,Q) = \frac{(p_i - q_i)^2}{2(p_i + q_i + \varepsilon)}\ ,
+  \chi^2(P,Q) = \frac{1}{2}\sum _{i=1}^n\frac{(p_i - q_i)^2}{(p_i + q_i + \varepsilon)}\ ,
 \end{equation*}
 
 \item the Euclidean distance:
@@ -119,11 +129,11 @@ distance measures:
 
 \noindent
 where $P$ and $Q$ are the discrete distributions and $p_i$ and $q_i$ are the
-$i$-th bins of those distributions. The $\varepsilon$ in the Chi-squared
+$i$-th bins of corresponding distributions. The $\varepsilon$ in the Chi-squared
 distance is a small constant used to avoid dividing by zero.
 
-We used these distances to compute a distance matrix for each of the
-domains and used the distance matrices to build Vietoris-Rips complexes.
+We used these distances to compute distance matrix for each of the
+domains and used distance matrices to build Vietoris-Rips complexes.
 
 \subsection{Domain comparison}
 
@@ -134,33 +144,31 @@ between the texts taken from the Bible should be smaller than the rest.
 
 \section{Results}
 
-In the next secitons, we present the results given by both our approaches.
-
-\subsection{Feature-based Alpha and Vietoris-Rips complexes} The bottleneck
-distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}. The
-barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
+\subsection{Feature based approach} Bottleneck
+distance matrix for the Alpha complex is shown in Table~\ref{tab:alpha}.
+Barcode plots are shown in Figure~\ref{fig:barcode:alpha}.
 
 As we can see from the distance matrix, the method did not produce meaningful
 results. The first thing we notice is that all the distances are very small,
-with the highest being only 0.008. Other examples that show the ineffectiveness
-of this method are the fact that the Old Testament differs the most from the New
-Testament and the fact that according to this method, physics article abstracts
-are very similar to recipes.
+with the highest being only $0.008$. Other examples that show the
+ineffectiveness of this method are the fact that the Old Testament differs the
+most from the New Testament and the fact that according to this method, physics
+article abstracts are very similar to recipes.
 
 Something we notice from the barcode plots is that
-\emph{TODO: napisat neki o 4d zadevah v receptih}
+\emph{\textcolor{red}{TODO}: napisat neki o 4d zadevah v receptih}
 
-We will not present the results for the Vietoris-Rips complex in this report,
-because the results are very similar.
+Results for the Vietoris-Rips complex are similar to the results for Alpha
+complex.
 
 \begin{table}
   \centering
   \begin{tabular}{c|cccc}
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0.000 & 0.008 & 0.003 & 0.003 \\
-    New Testament & 0.008 & 0.000 & 0.008 & 0.008 \\
-    phys.org      & 0.003 & 0.008 & 0.000 & 0.002 \\
-    recipes       & 0.003 & 0.008 & 0.002 & 0.000 \\
+    Old Testament & $0.000$ & $0.008$ & $0.003$ & $0.003$ \\
+    New Testament & $0.008$ & $0.000$ & $0.008$ & $0.008$ \\
+    phys.org      & $0.003$ & $0.008$ & $0.000$ & $0.002$ \\
+    recipes       & $0.003$ & $0.008$ & $0.002$ & $0.000$ \\
   \end{tabular}
 
   \caption{The distance matrix calculated from the Alpha complexes.}
@@ -178,18 +186,18 @@ because the results are very similar.
   \label{fig:barcode:alpha}
 \end{figure}
 
-\subsection{Distribtuion distance-based Vietoris-Rips complexes}
+\subsection{Distribution based approach}
 
-\emph{TODO: tekst}
+\emph{\textcolor{red}{TODO}: tekst}
 
 \begin{table}
   \centering
   \begin{tabular}{c|cccc}
                   & Old Testament & New Testament & phys.org & recipes \\ \hline
-    Old Testament & 0.000 & 0.015 & 0.040 & 0.112 \\
-    New Testament & 0.015 & 0.000 & 0.033 & 0.103 \\
-    phys.org      & 0.040 & 0.033 & 0.000 & 0.105 \\
-    recipes       & 0.112 & 0.103 & 0.105 & 0.000 \\
+    Old Testament & $0.000$ & $0.015$ & $0.040$ & $0.112$ \\
+    New Testament & $0.015$ & $0.000$ & $0.033$ & $0.103$ \\
+    phys.org      & $0.040$ & $0.033$ & $0.000$ & $0.105$ \\
+    recipes       & $0.112$ & $0.103$ & $0.105$ & $0.000$ \\
   \end{tabular}
 
   \caption{The distance matrix calculated from the Vietoris-Rips complexes,
@@ -216,10 +224,17 @@ As we saw in the previous section, the results are not very good.
 
 
 \section{Authors contributions}
+Both authors have contributed to most parts of the seminar work. The exception
+being that Domen prepared most of the presentation and Matija wrote most of the
+report. Detailed contributions can be seen in commit history of GitHub
+repository \url{https://github.com/dkegle/rt201617} which also contains all of
+the code and data.
 
 % biblio
 \bibliographystyle{plain}
 \bibliography{biblio}
 
+% [2] Image analysis: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4448533/
+% [3] Genome-wide maps: http://www.cell.com/cell-systems/pdf/S2405-4712(16)30183-1.pdf
 
 \end{document}
